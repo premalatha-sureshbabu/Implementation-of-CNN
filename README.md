@@ -37,8 +37,8 @@ Stop training if the model reaches 98% accuracy on the training set to prevent o
 
 ## PROGRAM
 
-### Name: Prema Latha S
-### Register Number: 212222230112
+### Name: Meetha Prahu
+### Register Number: 212222240065
 
 ### Importing Libraries
 ```
@@ -100,7 +100,7 @@ def reshape_and_normalize(images):
 # Apply your function
 training_images = reshape_and_normalize(training_images)
 
-print('Name: Meetha Prabhu            RegisterNumber: 212222240065         \n')
+print('Name: Prema Latha           Register Number: 212222230112   \n')
 print(f"Maximum pixel value after normalization: {np.max(training_images)}\n")
 print(f"Shape of training set after reshaping: {training_images.shape}\n")
 print(f"Shape of one image after reshaping: {training_images[0].shape}")
@@ -108,38 +108,24 @@ print(f"Shape of one image after reshaping: {training_images[0].shape}")
 ### CallBack Function
 ```
 
-def reshape_and_normalize(images):
-    """Reshapes the array of images and normalizes pixel values.
+# GRADED CLASS: EarlyStoppingCallback
 
-    Args:
-        images (numpy.ndarray): The images encoded as numpy arrays
+### START CODE HERE ###
 
-    Returns:
-        numpy.ndarray: The reshaped and normalized images.
-    """
+# Remember to inherit from the correct class
+class EarlyStoppingCallback(tf.keras.callbacks.Callback):
 
-    ### START CODE HERE ###
+    # Define the correct function signature for on_epoch_end method
+    def on_epoch_end(self,epoch, logs={}):
 
-    # Reshape the images to add an extra dimension (at the right-most side of the array)
-    images = np.expand_dims(images, axis=-1)
+        # Check if the accuracy is greater or equal to 0.98
+        if (logs.get('accuracy')>=0.995):
 
-    # Normalize pixel values
-    images = images/255.0
-
-    ### END CODE HERE ###
-
-    return images
-
-# Reload the images in case you run this cell multiple times
-(training_images, _), _ = tf.keras.datasets.mnist.load_data(path=data_path)
-
-# Apply your function
-training_images = reshape_and_normalize(training_images)
-
-print('Name: S.Prema Latha           RegisterNumber: 212222230112         \n')
-print(f"Maximum pixel value after normalization: {np.max(training_images)}\n")
-print(f"Shape of training set after reshaping: {training_images.shape}\n")
-print(f"Shape of one image after reshaping: {training_images[0].shape}")
+            # Stop training once the above condition is met
+            self.model.stop_training=True
+            print("\nReached 98% accuracy so cancelling training!")
+print('Name: .Prema Latha           Register Number: 212222230112       \n')
+### END CODE HERE ###
 ```
 ## GRADED FUNCTION: convolutional_model
 
@@ -196,15 +182,15 @@ training_history = model.fit(training_images, training_labels, epochs=10, callba
 ## OUTPUT
 
 ### Reshape and Normalize output
-![Screenshot 2024-09-16 133928](https://github.com/user-attachments/assets/09f83134-e0f5-4647-b174-49635c7ffc59)
+![Screenshot 2024-09-16 133928](https://github.com/user-attachments/assets/9718c654-fd4a-49fb-beaf-e7364f6b297a)
 
 
 ### Model Summary
-![Screenshot 2024-09-16 115224](https://github.com/user-attachments/assets/8c22fb58-8283-4609-9b7a-a4fdc4b82158)
+![Screenshot 2024-09-16 115224](https://github.com/user-attachments/assets/63673bc1-fb45-4482-8346-31ef9f58a8df)
 
 
 ### Training the model output
-![Screenshot 2024-09-16 115218](https://github.com/user-attachments/assets/e3cddec9-34f2-4dbb-81f8-bda21c960db2)
+![Screenshot 2024-09-16 115218](https://github.com/user-attachments/assets/bb0b61e7-c827-4a5f-83a6-876672d8d3b2)
 
 
 
