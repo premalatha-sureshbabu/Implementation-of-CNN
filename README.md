@@ -108,24 +108,38 @@ print(f"Shape of one image after reshaping: {training_images[0].shape}")
 ### CallBack Function
 ```
 
-# GRADED CLASS: EarlyStoppingCallback
+def reshape_and_normalize(images):
+    """Reshapes the array of images and normalizes pixel values.
 
-### START CODE HERE ###
+    Args:
+        images (numpy.ndarray): The images encoded as numpy arrays
 
-# Remember to inherit from the correct class
-class EarlyStoppingCallback(tf.keras.callbacks.Callback):
+    Returns:
+        numpy.ndarray: The reshaped and normalized images.
+    """
 
-    # Define the correct function signature for on_epoch_end method
-    def on_epoch_end(self,epoch, logs={}):
+    ### START CODE HERE ###
 
-        # Check if the accuracy is greater or equal to 0.98
-        if (logs.get('accuracy')>=0.995):
+    # Reshape the images to add an extra dimension (at the right-most side of the array)
+    images = np.expand_dims(images, axis=-1)
 
-            # Stop training once the above condition is met
-            self.model.stop_training=True
-            print("\nReached 98% accuracy so cancelling training!")
-print('Name: Meetha Prabhu            Register Number: 212222240065         \n')
-### END CODE HERE ###
+    # Normalize pixel values
+    images = images/255.0
+
+    ### END CODE HERE ###
+
+    return images
+
+# Reload the images in case you run this cell multiple times
+(training_images, _), _ = tf.keras.datasets.mnist.load_data(path=data_path)
+
+# Apply your function
+training_images = reshape_and_normalize(training_images)
+
+print('Name: S.Prema Latha           RegisterNumber: 212222230112         \n')
+print(f"Maximum pixel value after normalization: {np.max(training_images)}\n")
+print(f"Shape of training set after reshaping: {training_images.shape}\n")
+print(f"Shape of one image after reshaping: {training_images[0].shape}")
 ```
 ## GRADED FUNCTION: convolutional_model
 
@@ -182,15 +196,16 @@ training_history = model.fit(training_images, training_labels, epochs=10, callba
 ## OUTPUT
 
 ### Reshape and Normalize output
+![Screenshot 2024-09-16 133928](https://github.com/user-attachments/assets/09f83134-e0f5-4647-b174-49635c7ffc59)
 
-![image](https://github.com/user-attachments/assets/cc6d3205-3bc6-40f8-8200-9d1c1e147b88)
 
 ### Model Summary
-![image](https://github.com/user-attachments/assets/edb1aadd-0c0c-473e-9b22-90315b455c02)
+![Screenshot 2024-09-16 115224](https://github.com/user-attachments/assets/8c22fb58-8283-4609-9b7a-a4fdc4b82158)
+
 
 ### Training the model output
+![Screenshot 2024-09-16 115218](https://github.com/user-attachments/assets/e3cddec9-34f2-4dbb-81f8-bda21c960db2)
 
-![image](https://github.com/user-attachments/assets/e65a5e5d-0cbc-439c-a5fe-b319e886b9d6)
 
 
 
