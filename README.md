@@ -37,8 +37,6 @@ Stop training if the model reaches 98% accuracy on the training set to prevent o
 
 ## PROGRAM
 
-### Name: Meetha Prahu
-### Register Number: 212222240065
 
 ### Importing Libraries
 ```
